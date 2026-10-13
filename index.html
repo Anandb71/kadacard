@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#143d2e" />
+    <meta
+      name="description"
+      content="KadaCard turns a product photo into a bilingual WhatsApp listing. The photo stays on your device."
+    />
+    <title>KadaCard</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <a class="skip" href="#composer">Skip to listing</a>
+    <main class="wrap">
+      <header class="hero">
+        <p class="eyebrow"><span lang="ml">കട</span> · a shop counter</p>
+        <h1>KadaCard</h1>
+        <p class="lede">
+          Photograph what you sell. Get a WhatsApp listing in English and Malayalam, then add the price and number yourself.
+        </p>
+        <p class="lede-ml" lang="ml">ഉൽപ്പന്നത്തിന്റെ ഫോട്ടോയിൽ നിന്ന് വാട്സാപ്പ് ലിസ്റ്റിംഗ്. വിലയും നമ്പരും നിങ്ങൾ ചേർക്കാം.</p>
+      </header>
+
+      <p id="demo" class="demo" hidden>
+        Demo mode. A sample match is used, and the open-weight checker is not downloaded.
+      </p>
+
+      <section class="panel" aria-labelledby="photo-title">
+        <h2 id="photo-title">Product photo</h2>
+        <div id="drop" class="drop" tabindex="0" aria-label="Product photo drop zone">
+          <img id="preview" class="preview" alt="" hidden />
+          <p id="drop-copy" class="drop-copy">Drop a photo here, or take one of the product.</p>
+          <div class="drop-actions">
+            <button id="take-photo" type="button">Take photo</button>
+            <button id="choose-photo" class="secondary" type="button">Choose photo</button>
+          </div>
+        </div>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section id="match" class="panel" aria-labelledby="match-title" hidden>
+        <h2 id="match-title">Category</h2>
+        <p id="match-summary" class="match-summary"></p>
+        <div id="alternatives" class="alts" role="group" aria-label="Other possible categories"></div>
+      </section>
+
+      <section id="composer" class="panel" aria-labelledby="composer-title">
+        <h2 id="composer-title">Listing</h2>
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category"></select>
+        </div>
+        <div class="field">
+          <label for="product-name">Product name</label>
+          <input id="product-name" type="text" autocomplete="off" maxlength="80" />
+        </div>
+        <div class="split">
+          <div class="field">
+            <label for="price">Price (₹)</label>
+            <input id="price" inputmode="decimal" autocomplete="off" placeholder="150" maxlength="40" />
+          </div>
+          <div class="field">
+            <label for="phone">WhatsApp number</label>
+            <input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91" maxlength="24" />
+          </div>
+        </div>
+        <h3 class="preview-label">Preview</h3>
+        <textarea id="preview-text" class="preview-text" readonly aria-label="WhatsApp listing preview"></textarea>
+        <button id="copy" class="primary" type="button">Copy WhatsApp listing</button>
+        <p class="hint">Copy also keeps this listing on this device. The photo is not saved.</p>
+      </section>
+
+      <section class="panel" aria-labelledby="history-title">
+        <div class="section-row">
+          <h2 id="history-title">Saved listings</h2>
+          <button id="clear-history" class="text-button" type="button">Clear</button>
+        </div>
+        <div id="history" class="history"></div>
+        <div class="export-row">
+          <button id="export-text" class="secondary" type="button">Export text</button>
+          <button id="export-csv" class="secondary" type="button">Export CSV</button>
+        </div>
+      </section>
+
+      <p class="privacy">
+        Photos are scored on this device with the open-weight CLIP model Xenova/clip-vit-base-patch32, then discarded.
+        History stores the listing text only.
+      </p>
+    </main>
+    <input id="camera" class="sr-input" type="file" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true" />
+    <input id="file" class="sr-input" type="file" accept="image/*" tabindex="-1" aria-hidden="true" />
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>
